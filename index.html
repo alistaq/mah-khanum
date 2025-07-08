@@ -2,110 +2,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>برای ماه خانومم</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bazie Del</title>
   <style>
     body {
       margin: 0;
-      background: black;
-      overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #1a1a1a, #3a3a3a);
       color: white;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-
-    .sky {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse at center, #000 0%, #111 100%);
-      overflow: hidden;
-    }
-
-    .moon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 200px;
-      height: 200px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg') no-repeat center center / cover;
-      border-radius: 50%;
-      box-shadow: 0 0 80px rgba(255, 255, 255, 0.4);
-      cursor: pointer;
-      transition: all 1s ease;
-    }
-
-    .moon.open {
-      width: 100%;
-      height: 100%;
-      border-radius: 0;
-      background: black;
-      box-shadow: none;
-    }
-
-    .content {
-      display: none;
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 700px;
-      text-align: center;
-      font-size: 1.2em;
-      line-height: 2em;
-      animation: fadein 3s ease forwards;
-    }
-
-    .content img {
-      width: 220px;
-      border-radius: 20px;
+    .hearts {
+      display: flex;
+      gap: 30px;
       margin-bottom: 30px;
     }
-
-    audio {
-      display: none;
+    .heart {
+      font-size: 60px;
+      cursor: pointer;
+      transition: transform 0.3s;
     }
-
-    @keyframes fadein {
-      0% { opacity: 0; transform: translateY(40px); }
-      100% { opacity: 1; transform: translateY(0); }
+    .heart:hover {
+      transform: scale(1.2);
+    }
+    .result {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+    .result img {
+      max-width: 250px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(255, 0, 100, 0.7);
+    }
+    .message {
+      font-size: 18px;
+      padding: 0 20px;
+      color: #ffc6ec;
     }
   </style>
 </head>
 <body>
-  <div class="sky">
-    <div class="moon" onclick="openMoon()"></div>
-    <div class="content" id="content">
-      <img src="mah.jpg" alt="ماه خانومم">
-      <div>
-        ماه منی تو<br>
-        نه فقط روشنی شبام نه فقط آرزوی روزام<br>
-        تو خود خود عشقی<br>
-        با اون نگاهت که خونه‌مو گرم می‌کنه<br>
-        با اون خنده‌ت که بغضامو آب می‌کنه<br>
-        با اون صدات که منو به زندگی برمی‌گردونه<br>
-        تو نه فقط زنمی تو همه‌چیزی<br>
-        قول می‌دم هر روز بیشتر از دیروز عاشقت باشم<br>
-        قول می‌دم تمام لحظه‌هامو صرف دوست داشتنت کنم<br>
-        قول می‌دم هیچ‌وقت ولت نکنم<br>
-        قول می‌دم بمونم... تا ابد<br><br>
-        و راستی...<br>
-        تو یه همستر خوشگل هم هستی که دلم می‌خواد تا همیشه توی بغلم نگه‌دارم ❤️  
-      </div>
-    </div>
-    <audio id="music" autoplay>
-      <source src="music.mp3" type="audio/mp3">
-    </audio>
+  <h2>یکی از این قلبا رو بزن 💖</h2>
+  <div class="hearts">
+    <div class="heart">❤️</div>
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
+  </div>
+
+  <div class="result" id="result">
+    <img src="https://chat.openai.com/cdn-cgi/imagedelivery/bAeGkmytOk9b7gM0K0C9Jg/9ad1493f-2c84-4f60-7283-2efdbf086b00/public" alt="Mah Khanom" />
+    <p class="message">
+      تو هر سه قلب رو بردی...<br>
+      چون هر چی دل داشتم، دادی بهش معنا<br>
+      چون با خنده‌هات بازی رو عوض کردی...<br><br>
+      تو برنده‌ای، چون دلم همیشه سمت توئه ❤️
+    </p>
   </div>
 
   <script>
-    function openMoon() {
-      document.querySelector('.moon').classList.add('open');
-      document.getElementById('content').style.display = 'block';
-      document.getElementById('music').play();
-    }
+    const hearts = document.querySelectorAll('.heart');
+    const result = document.getElementById('result');
+
+    hearts.forEach(heart => {
+      heart.addEventListener('click', () => {
+        document.querySelector('.hearts').style.display = 'none';
+        result.style.display = 'flex';
+      });
+    });
   </script>
 </body>
 </html>
